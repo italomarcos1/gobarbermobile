@@ -1,5 +1,6 @@
 import './config/ReactotronConfig';
 import React from 'react';
+import 'react-native-gesture-handler';
 import { Text, StatusBar } from 'react-native';
 
 export default function App() {
