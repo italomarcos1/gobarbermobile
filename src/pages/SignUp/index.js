@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Image } from 'react-native';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Background from '~/components/Background';
 
-import logo from '~/assets/logo.png';
+import { signUpRequest } from '~/store/modules/auth/actions';
 
 import {
   Container,
@@ -14,9 +15,23 @@ import {
   SubmitButton,
 } from './styles';
 
+import logo from '~/assets/logo.png';
+
 export default function SignUp({ navigation }) {
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  const dispatch = useDispatch();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function handleSignUp() {
+    console.tron.log(name, email, password);
+
+    dispatch(signUpRequest(name, email, password));
+  }
 
   return (
     <Background>
@@ -29,6 +44,8 @@ export default function SignUp({ navigation }) {
             autoCorrect={false}
             returnKeyType="next"
             onSubmitEditing={() => emailRef.current.focus()}
+            value={name}
+            onChangeText={setName}
           />
           <FormInput
             icon="mail-outline"
@@ -39,6 +56,8 @@ export default function SignUp({ navigation }) {
             ref={emailRef}
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
+            value={email}
+            onChangeText={setEmail}
           />
           <FormInput
             icon="lock-outline"
@@ -47,10 +66,12 @@ export default function SignUp({ navigation }) {
             autoCapitalize="none"
             ref={passwordRef}
             returnKeyType="send"
-            onSubmitEditing={() => {}}
+            onSubmitEditing={handleSignUp}
+            value={password}
+            onChangeText={setPassword}
           />
 
-          <SubmitButton onPress={() => {}}>Cadastrar</SubmitButton>
+          <SubmitButton onPress={handleSignUp}>Cadastrar</SubmitButton>
           <SignLink onPress={() => navigation.navigate('SignIn')}>
             <SignLinkText>Já tenho conta</SignLinkText>
           </SignLink>
