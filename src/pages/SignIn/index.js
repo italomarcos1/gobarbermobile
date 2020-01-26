@@ -1,7 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import Background from '~/components/Background';
+
+import { signInRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.png';
 
@@ -15,7 +18,15 @@ import {
 } from './styles';
 
 export default function SignIn({ navigation }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
+
   const passwordRef = useRef();
+
+  function handleLogin() {
+    dispatch(signInRequest(email, password));
+  }
 
   return (
     <Background>
@@ -30,6 +41,8 @@ export default function SignIn({ navigation }) {
             autoCapitalize="none"
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
+            value={email}
+            onChangeText={setEmail}
           />
           <FormInput
             icon="lock-outline"
@@ -37,9 +50,11 @@ export default function SignIn({ navigation }) {
             secureTextEntry
             returnKeyType="send"
             ref={passwordRef}
-            onSubmitEditing={() => {}} // action de login
+            onSubmitEditing={() => handleLogin}
+            value={password}
+            onChangeText={setPassword}
           />
-          <SubmitButton onPress={() => {}}>Entrar</SubmitButton>
+          <SubmitButton onPress={() => handleLogin}>Entrar</SubmitButton>
           <SignLink onPress={() => navigation.navigate('SignUp')}>
             <SignLinkText>Criar conta</SignLinkText>
           </SignLink>

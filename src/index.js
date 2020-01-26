@@ -7,9 +7,9 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { store, persistor } from '~/store';
-import Routes from './routes';
+import App from './App';
 
-export default function App() {
+export default function Index() {
   return (
     <>
       <Provider store={store}>
@@ -18,7 +18,7 @@ export default function App() {
             barStyle="light-content"
             backgroundColor="rgba(0, 0, 0, 0.67)"
           />
-          <Routes />
+          <App />
         </PersistGate>
       </Provider>
     </>
