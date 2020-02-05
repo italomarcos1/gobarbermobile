@@ -14,7 +14,7 @@ export default function Confirm() {
 Confirm.navigationOptions = ({ navigation }) => ({
   title: 'Confirm appointment',
   headerLeft: () => (
-    <TouchableOpacity onPress={() => navigation.navigate('SelectDate')}>
+    <TouchableOpacity onPress={() => navigation.goBack()}>
       <Icon name="chevron-left" size={20} color="#ab2000" />
     </TouchableOpacity>
   ),
