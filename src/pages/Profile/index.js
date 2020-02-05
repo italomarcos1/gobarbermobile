@@ -54,6 +54,10 @@ export default function Profile() {
     }
   }
 
+  function logout() {
+    dispatch(signOut());
+  }
+
   return (
     <Background>
       <Container>
@@ -116,7 +120,7 @@ export default function Profile() {
           />
 
           <SubmitButton onPress={updateProfile}>Atualizar Perfil</SubmitButton>
-          <LogoutButton onPress={signOut}>Log out</LogoutButton>
+          <LogoutButton onPress={logout}>Log out</LogoutButton>
         </Form>
       </Container>
     </Background>
