@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { Image } from 'react-native';
+import { Image, Keyboard } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   Container,
@@ -27,6 +28,8 @@ export default function SignUp({ navigation }) {
   const passwordRef = useRef();
 
   function handleSubmit() {
+    Keyboard.dismiss();
+
     dispatch(signUpRequest(name, email, password));
   }
 
@@ -75,10 +78,16 @@ export default function SignUp({ navigation }) {
             Entrar
           </SubmitButton>
           <SignLink onPress={() => navigation.navigate('SignIn')}>
-            <SignLinkText>Criar conta</SignLinkText>
+            <SignLinkText>Já tenho conta</SignLinkText>
           </SignLink>
         </Form>
       </Container>
     </Background>
   );
 }
+
+SignUp.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+};

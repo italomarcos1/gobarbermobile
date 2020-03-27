@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Image } from 'react-native';
+import { Image, Keyboard } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   Container,
@@ -14,6 +14,7 @@ import {
 
 import Background from '~/components/Background';
 import logo from '~/assets/logo.png';
+
 import { signInRequest } from '~/store/modules/auth/actions';
 
 export default function SignIn({ navigation }) {
@@ -22,10 +23,10 @@ export default function SignIn({ navigation }) {
 
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
-
   const passwordRef = useRef();
 
   function handleSubmit() {
+    Keyboard.dismiss();
     dispatch(signInRequest(email, password));
   }
 
@@ -68,3 +69,9 @@ export default function SignIn({ navigation }) {
     </Background>
   );
 }
+
+SignIn.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+};

@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 export default reducers => {
   const persistedReducer = persistReducer(
     {
-      key: 'gobarberwebf',
+      key: 'gobarbermobile',
       storage: AsyncStorage,
       whitelist: ['auth', 'user'],
     },

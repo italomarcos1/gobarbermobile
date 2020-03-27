@@ -1,3 +1,4 @@
+import { Alert, Keyboard } from 'react-native';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import api from '~/services/api';
 import { signInSuccess, signFailure } from '~/store/modules/auth/actions';
@@ -5,13 +6,17 @@ import { signInSuccess, signFailure } from '~/store/modules/auth/actions';
 export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
+
     const response = yield call(api.post, 'sessions', { email, password });
 
     const { token, user } = response.data;
 
+    Keyboard.dismiss();
+
     yield put(signInSuccess(token, user));
   } catch (err) {
-    yield put(signFailure);
+    Alert.alert('Falha no login', 'Confira seus dados e tente novamente.');
+    yield put(signFailure());
   }
 }
 
@@ -20,11 +25,11 @@ export function* signUp({ payload }) {
     const { name, email, password } = payload;
     yield call(api.post, 'users', { name, email, password });
 
-    // const { token, user } = response.data;
-
-    // yield put(signInSuccess(token, user));
+    Keyboard.dismiss();
+    Alert.prompt('Sucesso no cadastro', 'Você foi cadastrado.');
   } catch (err) {
-    yield put(signFailure);
+    Alert.alert('Falha no cadastro', 'Confira seus dados e tente novamente.');
+    yield put(signFailure());
   }
 }
 
@@ -39,7 +44,7 @@ export function setToken({ payload }) {
 }
 
 export function signOut() {
-  // history.push('/');
+  // yield put(ToastActionsCreators.displayWarning('Você deslogou da aplicação.'));
 }
 
 export default all([
