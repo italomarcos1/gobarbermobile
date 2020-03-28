@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { formatRelative, parseISO } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+import pt from 'date-fns/locale/pt';
 
 import { Avatar, Container, Left, Info, Name, Time } from './styles';
 
@@ -10,7 +10,7 @@ export default function Appointment({ data, onCancel }) {
   const time = useMemo(() => {
     return formatRelative(parseISO(data.date), new Date(), {
       addSuffix: true,
-      locale: ptBR,
+      locale: pt,
     });
   }, [data.date]);
   return (
