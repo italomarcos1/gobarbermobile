@@ -75,7 +75,7 @@ export default function SignUp({ navigation }) {
           />
 
           <SubmitButton loading={loading} onPress={handleSubmit}>
-            Entrar
+            Cadastrar
           </SubmitButton>
           <SignLink onPress={() => navigation.navigate('SignIn')}>
             <SignLinkText>Já tenho conta</SignLinkText>

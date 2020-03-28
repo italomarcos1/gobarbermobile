@@ -28,7 +28,7 @@ export function* signUp({ payload }) {
     Keyboard.dismiss();
     Alert.prompt('Sucesso no cadastro', 'Você foi cadastrado.');
   } catch (err) {
-    Alert.alert('Falha no cadastro', 'Confira seus dados e tente novamente.');
+    Alert.prompt('Falha no cadastro', 'Confira seus dados e tente novamente.');
     yield put(signFailure());
   }
 }
@@ -44,7 +44,7 @@ export function setToken({ payload }) {
 }
 
 export function signOut() {
-  // yield put(ToastActionsCreators.displayWarning('Você deslogou da aplicação.'));
+  Alert.prompt('Aviso', 'Você deslogou da aplicação.');
 }
 
 export default all([
