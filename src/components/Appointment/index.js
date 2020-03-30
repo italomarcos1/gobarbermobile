@@ -10,12 +10,12 @@ export default function Appointment({ data }) {
       <Left>
         <Avatar
           source={{
-            uri: `https://api.adorable.io/avatar/50/skywalker.png`,
+            uri: `https://api.adorable.io/avatar/50/${data.provider.name}.png`,
           }}
         />
         <Info>
-          <Name>{data.user.name}</Name>
-          <Time>{data.user.time}</Time>
+          <Name>{data.provider.name}</Name>
+          <Time>21:39</Time>
         </Info>
       </Left>
       <TouchableOpacity onPress={() => {}}>
