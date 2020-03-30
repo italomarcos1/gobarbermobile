@@ -15,7 +15,7 @@ export default function Dashboard() {
       setAppointments(response.data);
     }
     loadAppointments();
-  }, []); //eslint-disable-line
+  }, []);
 
   async function handleCancel(id) {
     const response = await api.delete(`appointments/${id}`);

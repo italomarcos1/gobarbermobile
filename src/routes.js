@@ -14,7 +14,7 @@ export default (signed = false) =>
       {
         Sign: createSwitchNavigator({ SignIn, SignUp }),
         App: createBottomTabNavigator(
-          { Dashboard, Profile },
+          { Dashboard },
           {
             tabBarOptions: {
               activeTintColor: '#FFF',
